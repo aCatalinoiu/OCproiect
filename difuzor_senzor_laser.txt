@@ -1,0 +1,32 @@
+#define LIGHT_TRESH_UP 100
+#define LIGHT_TRESH_DOWN 300
+
+int LDR = 2;
+int LDRValue = 0;
+int Light_s = 30;
+
+void setup()
+{
+  // put your setup code here, to run once:
+  pinMode (8, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  LDRValue=analogRead(LDR);
+  delay(500);
+  Serial.println(LDRValue);
+  if (LDRValue > LIGHT_TRESH_UP)
+	{
+    	 digitalWrite(8, HIGH);
+    	 tone(4,65000);
+  	}
+
+  if (LDRValue > LIGHT_TRESH_DOWN)
+  	{
+    	 digitalWrite(8, LOW);
+    	 noTone(4);
+  	}
+}
+
